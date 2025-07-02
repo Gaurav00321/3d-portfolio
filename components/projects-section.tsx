@@ -261,7 +261,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                   <Button
                     size="sm"
                     variant="outline"
-                    className="flex-1 border-orange-500/50 text-orange-300 hover:bg-orange-500/10 relative overflow-hidden group"
+                    className="flex-1 border-orange-500/50 text-black hover:bg-orange-500/10 hover:text-white relative overflow-hidden group"
                     onClick={() => {
                       if (typeof window !== "undefined") {
                         window.open(project.githubUrl, "_blank")

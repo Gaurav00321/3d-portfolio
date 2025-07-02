@@ -3,6 +3,7 @@
 import { useRef, useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react"
+import Link from "next/link"
 
 export function HeroSection() {
   const orbitRef = useRef<HTMLDivElement | null>(null)
@@ -285,29 +286,31 @@ export function HeroSection() {
         {/* CTA Section with Better Responsive Design */}
         <div className="relative mb-8 sm:mb-12">
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center relative z-10">
+            <Link href="#projects">
             <Button className="interactive-button bg-orange-500 hover:bg-orange-600 text-black font-semibold px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg rounded-full shadow-lg shadow-orange-500/30 w-full sm:w-auto">
               Explore Projects
             </Button>
+            </Link>
 
             <div className="flex gap-3 sm:gap-4">
               <Button
                 variant="outline"
                 size="icon"
-                className="interactive-button border-orange-500/50 text-orange-400 hover:bg-orange-500/20 hover:border-orange-400 w-10 h-10 sm:w-12 sm:h-12 rounded-full"
+                className="interactive-button border-orange-500/50 text-black hover:bg-orange-500/20 hover:text-white hover:border-orange-400 w-10 h-10 sm:w-12 sm:h-12 rounded-full"
               >
                 <Github className="h-4 w-4 sm:h-6 sm:w-6" />
               </Button>
               <Button
                 variant="outline"
                 size="icon"
-                className="interactive-button border-orange-500/50 text-orange-400 hover:bg-orange-500/20 hover:border-orange-400 w-10 h-10 sm:w-12 sm:h-12 rounded-full"
+                className="interactive-button border-orange-500/50 text-black hover:bg-orange-500/20 hover:text-white hover:border-orange-400 w-10 h-10 sm:w-12 sm:h-12 rounded-full"
               >
                 <Linkedin className="h-4 w-4 sm:h-6 sm:w-6" />
               </Button>
               <Button
                 variant="outline"
                 size="icon"
-                className="interactive-button border-orange-500/50 text-orange-400 hover:bg-orange-500/20 hover:border-orange-400 w-10 h-10 sm:w-12 sm:h-12 rounded-full"
+                className="interactive-button border-orange-500/50 text-black hover:bg-orange-500/20 hover:text-white hover:border-orange-400 w-10 h-10 sm:w-12 sm:h-12 rounded-full"
               >
                 <Mail className="h-4 w-4 sm:h-6 sm:w-6" />
               </Button>

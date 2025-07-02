@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Github, Linkedin, Mail, Download, Send } from "lucide-react"
 
 export function ContactSection() {
-  const sectionRef = useRef()
+  const sectionRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     // Add interactive styles
@@ -175,7 +175,7 @@ export function ContactSection() {
                       className="w-2 h-2 bg-orange-400 rounded-full status-indicator"
                       style={{ animationDelay: "0.5s" }}
                     />
-                    <span>Based in San Francisco, CA</span>
+                    <span>Based in Vadodara, Gujarat, India</span>
                   </div>
                   <div className="flex items-center gap-2 group hover:text-blue-300 transition-colors">
                     <div
