@@ -221,8 +221,11 @@ export function HeroSection() {
               {/* Outer Ring with Projects */}
               <div className="absolute w-72 h-72 sm:w-96 sm:h-96 md:w-[28rem] md:h-[28rem] lg:w-[32rem] lg:h-[32rem] border border-orange-500/20 rounded-full flex items-center justify-center">
                 {projects.map((project, index) => {
-                  const radius =
-                    window.innerWidth < 640 ? 144 : window.innerWidth < 768 ? 192 : window.innerWidth < 1024 ? 224 : 256
+                  let radius = 256;
+                  if (typeof window !== "undefined") {
+                    radius =
+                      window.innerWidth < 640 ? 144 : window.innerWidth < 768 ? 192 : window.innerWidth < 1024 ? 224 : 256
+                  }
                   const angleRad = (project.angle * Math.PI) / 180
                   const x = Math.cos(angleRad) * radius
                   const y = Math.sin(angleRad) * radius

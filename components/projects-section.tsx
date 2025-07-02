@@ -6,10 +6,24 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { ExternalLink, Github, Orbit } from "lucide-react"
 
-export function ProjectsSection({ projects }) {
-  const [hoveredProject, setHoveredProject] = useState(null)
+interface Project {
+  id: string | number
+  title: string
+  description: string
+  technologies: string[]
+  color: string
+  liveUrl: string
+  githubUrl: string
+}
+
+interface ProjectsSectionProps {
+  projects: Project[]
+}
+
+export function ProjectsSection({ projects }: ProjectsSectionProps) {
+  const [hoveredProject, setHoveredProject] = useState<string | number | null>(null)
   const [selectedFilter, setSelectedFilter] = useState("all")
-  const sectionRef = useRef()
+  const sectionRef = useRef<HTMLElement | null>(null)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
 
   // Extract unique technologies for filtering
@@ -20,7 +34,12 @@ export function ProjectsSection({ projects }) {
     selectedFilter === "all" ? projects : projects.filter((project) => project.technologies.includes(selectedFilter))
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
+    interface MouseMoveEvent extends React.MouseEvent<HTMLElement> {
+      clientX: number
+      clientY: number
+    }
+
+    const handleMouseMove = (e: MouseEvent) => {
       if (sectionRef.current) {
         const rect = sectionRef.current.getBoundingClientRect()
         setMousePosition({
@@ -186,10 +205,12 @@ export function ProjectsSection({ projects }) {
             >
               <div
                 className="project-glow"
-                style={{
-                  "--mouse-x": `${mousePosition.x}px`,
-                  "--mouse-y": `${mousePosition.y}px`,
-                }}
+                style={
+                  {
+                    "--mouse-x": `${mousePosition.x}px`,
+                    "--mouse-y": `${mousePosition.y}px`,
+                  } as React.CSSProperties & Record<string, any>
+                }
               />
 
               {/* Orbital Indicator */}
@@ -227,7 +248,11 @@ export function ProjectsSection({ projects }) {
                   <Button
                     size="sm"
                     className="flex-1 bg-orange-500 hover:bg-orange-600 text-black relative overflow-hidden group"
-                    onClick={() => window.open(project.liveUrl, "_blank")}
+                    onClick={() => {
+                      if (typeof window !== "undefined") {
+                        window.open(project.liveUrl, "_blank")
+                      }
+                    }}
                   >
                     <ExternalLink className="h-4 w-4 mr-2 group-hover:animate-bounce" />
                     Live
@@ -237,7 +262,11 @@ export function ProjectsSection({ projects }) {
                     size="sm"
                     variant="outline"
                     className="flex-1 border-orange-500/50 text-orange-300 hover:bg-orange-500/10 relative overflow-hidden group"
-                    onClick={() => window.open(project.githubUrl, "_blank")}
+                    onClick={() => {
+                      if (typeof window !== "undefined") {
+                        window.open(project.githubUrl, "_blank")
+                      }
+                    }}
                   >
                     <Github className="h-4 w-4 mr-2 group-hover:animate-spin" />
                     Code
